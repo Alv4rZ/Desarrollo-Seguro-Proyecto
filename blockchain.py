@@ -18,7 +18,7 @@ class Chain(Mine):
         hash.update(str(block).encode('utf-8'))
         return block._hash.hexdigest() == hash.hexdigest() and int(hash.hexdigest(), 16) < 2 ** (256 - self._difficulty) and block.prev_block == self._blocks[-1]._hash
 
-    def add_to_pool(self, data: Any) -> None:
+    def add_to_pool(self, data) -> None:
         self._pool.append(data)
 
     def create_transaction(self, origin: str, destination: str, flight_duration: int) -> None:
@@ -54,7 +54,7 @@ class Chain(Mine):
     def save(self) -> Memento:
         return Memento(self._blocks)
     
-    def restore(memento: Memento):
+    def restore(self, memento: Memento):
         self._blocks = memento.get_chain()
 
 class Block(Mine):
@@ -86,7 +86,7 @@ class Transaction:
 
 class Memento:
     def __init__(self, chain: Chain):
-        self._chain = Chain
+        self._chain = chain
     
     def get_chain(self):
         return self._chain
