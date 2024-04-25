@@ -1,5 +1,7 @@
-from block import Block
-from chain import Chain
+# Patron creacional -> Prototype
+# Patron Estructural -> Facade
+# Patron de comortamiento -> Memento
+from blockchain import Chain
 
 chain = Chain(20)
 
