@@ -23,4 +23,4 @@ This project implements a prototype blockchain to securely record incoming fligh
 
 ## Contribute
 
-Make a Fork of the repository and make a push with your changes to wait for approval of the code owners
+Make a Fork of the repository and make a push with your changes, fill the pull request template and wait for approval of the code owners
