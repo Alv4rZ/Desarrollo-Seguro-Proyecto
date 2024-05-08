@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from __future__ import annotations
 from blockchain import Chain
 from flight import Flight
@@ -11,7 +12,7 @@ class Airport:
     def __init__(self, name: str, city: str, state: str, difficulty: int) -> None:
         """
         Inicializa un aeropuerto con su información y configuración de cadena de bloques.
-        
+
         Args:
             name (str): Nombre del aeropuerto.
             city (str): Ciudad donde se encuentra el aeropuerto.
@@ -29,49 +30,49 @@ class Airport:
     def register_flight(self, origin: Airport, destination: Airport, number: int, plane_type: str, duration: int) -> str:
         """
         Registra un vuelo desde un aeropuerto origen a un aeropuerto destino.
-        
+
         Args:
             origin (Airport): Aeropuerto de origen.
             destination (Airport): Aeropuerto de destino.
             number (int): Número del vuelo.
             plane_type (str): Tipo de avión.
             duration (int): Duración del vuelo en minutos.
-        
+
         Returns:
             str: Mensaje confirmando el registro del vuelo.
         """
         flight = Flight(number, plane_type, duration, origin, destination)
         self._flying[flight._number] = flight
-        return "Vuelo registrado con éxito"
+        return 'Vuelo registrado con éxito'
 
     def get_all_flights(self) -> None:
         """
         Imprime información sobre todos los vuelos registrados y activos.
         """
-        print("#" * 20)
+        print('#' * 20)
         for ids in self._flying:
             print(
-                f"Vuelo ID: {self._flying[ids]._id}, "
-                f"Destino: {self._flying[ids].destination.name}, "
-                f"Origen: {self._flying[ids].origin.name}, "
-                f"Número: {self._flying[ids]._number}, "
+                f'Vuelo ID: {self._flying[ids]._id}, '
+                f'Destino: {self._flying[ids].destination.name}, '
+                f'Origen: {self._flying[ids].origin.name}, '
+                f'Número: {self._flying[ids]._number}, '
                 f"Atterrizaje: {'Sí' if self._flying[ids]._landed else 'No'}"
             )
-        print("#" * 20)
+        print('#' * 20)
 
     def flight_arrived(self, number: int) -> str:
         """
         Marca un vuelo como llegado al aeropuerto.
-        
+
         Args:
             number (int): Número del vuelo que ha llegado.
-        
+
         Returns:
             str: Mensaje confirmando el aterrizaje del vuelo.
         """
         self._flying[number].successful_landing()
-        return f"Vuelo {number} llegó con éxito"
-        
+        return f'Vuelo {number} llegó con éxito'
+
     def add_to_chain(self) -> None:
         """
         Agrega vuelos aterrizados a la cadena de bloques y realiza el proceso de minería.
@@ -79,7 +80,7 @@ class Airport:
         for ids in self._flying:
             if self._flying[ids]._landed:
                 self._chain.create_transaction(
-                    self._flying[ids].origin.name, 
+                    self._flying[ids].origin.name,
                     self._flying[ids].destination.name,
                     self._flying[ids].duration
                 )
@@ -108,8 +109,8 @@ class Airport:
     def __str__(self) -> str:
         """
         Representación de cadena de texto para el aeropuerto.
-        
+
         Returns:
             str: Descripción del aeropuerto.
         """
-        return f"Aeropuerto: {self.name}, Ciudad: {self.city}, Estado: {self.state}"
+        return f'Aeropuerto: {self.name}, Ciudad: {self.city}, Estado: {self.state}'
