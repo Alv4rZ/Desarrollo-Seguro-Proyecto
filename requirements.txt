@@ -1,4 +1,4 @@
 hashlib
+pre-commit
 uuid
 virtualenv
-pre-commit

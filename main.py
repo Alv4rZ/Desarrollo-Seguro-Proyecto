@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from airport import Airport
 
 benito_juarez = Airport('Benito', 'CDMX', 'Estado de mexico', 10)
